@@ -1,9 +1,10 @@
-'use client'
-import { RegisterSchema, registerSchema } from '@/lib/schemas/registerSchema'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Card, CardHeader, CardBody, Button, Input } from '@nextui-org/react'
-import { useForm } from 'react-hook-form'
-import { GiPadlock } from 'react-icons/gi'
+'use client';
+import { registerUser } from '@/app/actions/authActions';
+import { RegisterSchema, registerSchema } from '@/lib/schemas/registerSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Card, CardHeader, CardBody, Button, Input } from '@nextui-org/react';
+import { useForm } from 'react-hook-form';
+import { GiPadlock } from 'react-icons/gi';
 
 export default function RegisterForm() {
 	const {
@@ -11,13 +12,14 @@ export default function RegisterForm() {
 		handleSubmit,
 		formState: { errors, isValid },
 	} = useForm<RegisterSchema>({
-		resolver: zodResolver(registerSchema),
+		// resolver: zodResolver(registerSchema),
 		mode: 'onTouched',
-	})
+	});
 
-	const onSubmit = (data: RegisterSchema) => {
-		console.log(data)
-	}
+	const onSubmit = async (data: RegisterSchema) => {
+		const result = await registerUser(data);
+		console.log({ result });
+	};
 
 	return (
 		<Card className='w-2/5 mx-auto'>
@@ -70,5 +72,5 @@ export default function RegisterForm() {
 				</form>
 			</CardBody>
 		</Card>
-	)
+	);
 }
