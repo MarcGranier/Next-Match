@@ -2,6 +2,8 @@
 
 import { prisma } from '@/lib/prisma';
 import { RegisterSchema, registerSchema } from '@/lib/schemas/registerSchema';
+import { ActionResult } from '@/types';
+import { User } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
 export async function registerUser(
