@@ -23,9 +23,10 @@ export default function LogInForm() {
 		const result = await signInUser(data);
 		if (result.status === 'success') {
 			router.push('/members');
-		} else{
-      toast.error(result.error as string)
-    }
+			router.refresh();
+		} else {
+			toast.error(result.error as string);
+		}
 	};
 
 	return (
