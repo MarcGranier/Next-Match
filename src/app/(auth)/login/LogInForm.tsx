@@ -6,6 +6,7 @@ import { LoginSchema, loginSchema } from '@/lib/schemas/loginSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signInUser } from '@/app/actions/authActions';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 export default function LogInForm() {
 	const router = useRouter();
@@ -22,7 +23,9 @@ export default function LogInForm() {
 		const result = await signInUser(data);
 		if (result.status === 'success') {
 			router.push('/members');
-		}
+		} else{
+      toast.error(result.error as string)
+    }
 	};
 
 	return (
