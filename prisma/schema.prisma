@@ -42,11 +42,12 @@ model Member {
   userId      String   @unique
   name        String
   gender      String
-  dateOfBirth String
+  dateOfBirth DateTime
   created     DateTime @default(now())
   updated     DateTime @default(now())
   description String
   city        String
+  country     String
   image       String?
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   photos      Photo[]
