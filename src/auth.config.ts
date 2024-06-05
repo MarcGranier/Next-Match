@@ -1,4 +1,6 @@
 import Credentials from 'next-auth/providers/credentials';
+import Google from 'next-auth/providers/google';
+import Github from 'next-auth/providers/github';
 
 import type { NextAuthConfig } from 'next-auth';
 import { loginSchema } from './lib/schemas/loginSchema';
@@ -17,7 +19,11 @@ export default {
 
 					const user = await getUserByEmail(email);
 
-					if (!user || !(await compare(password, user.passwordHash)))
+					if (
+						!user ||
+						!user.passwordHash ||
+						!(await compare(password, user.passwordHash))
+					)
 						return null;
 
 					return user;
