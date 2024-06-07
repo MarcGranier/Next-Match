@@ -26,7 +26,7 @@ export default function Error({
 					</div>
 				</CardHeader>
 				<CardBody>
-					<div className='flex justify-center text-danger'>{error.message}</div>
+					<div className='flex justify-center text-dark'>{error.message}</div>
 				</CardBody>
 				<CardFooter className='flex justify-center'>
 					<Button onClick={() => reset()} color='secondary' variant='bordered'>
