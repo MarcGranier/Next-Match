@@ -1,25 +1,26 @@
-'use client'
-import { calculateAge } from "@/lib/util"
-import { Button, Card, CardBody, CardFooter, Divider, Image } from "@nextui-org/react"
-import { Member } from "@prisma/client"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+'use client';
+import { calculateAge } from '@/lib/util';
+import {
+	Button,
+	Card,
+	CardBody,
+	CardFooter,
+	Divider,
+	Image,
+} from '@nextui-org/react';
+import { Member } from '@prisma/client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 type Props = {
-  member: Member
-}
+	member: Member;
+	navLinks: { name: string; href: string }[];
+};
 
-export default function MemberSidebar ({member}: Props) {
-  const basePath = `/members/${member.userId}`
-  const pathname= usePathname()
+export default function MemberSidebar({ member, navLinks }: Props) {
+	const pathname = usePathname();
 
-  const navLinks = [
-    {name: 'Profile', href: `${basePath}`},
-    {name: 'Photos', href: `${basePath}/photos`},
-    {name: 'Chat', href: `${basePath}/chat`}
-  ]
-
-  return (
+	return (
 		<Card className='w-full mt-10 items-center h-[80vh]'>
 			<Image
 				height={200}
@@ -43,28 +44,29 @@ export default function MemberSidebar ({member}: Props) {
 						<Link
 							href={link.href}
 							key={link.name}
-              className={`block rounded
-                  ${pathname === link.href
-                    ? 'text-secondary' : 'hover: text-secondary/50'}`}
+							className={`block rounded
+                  ${
+										pathname === link.href
+											? 'text-secondary'
+											: 'hover: text-secondary/50'
+									}`}
 						>
-              {link.name}
-            </Link>
+							{link.name}
+						</Link>
 					))}
 				</nav>
 			</CardBody>
-      <CardFooter>
-        <Button
-          as={Link}
-          href='/members'
-          fullWidth
-          color='secondary'
-          variant='bordered'
-        >
-          Go Back
-        </Button>
-        
-      </CardFooter>
+			<CardFooter>
+				<Button
+					as={Link}
+					href='/members'
+					fullWidth
+					color='secondary'
+					variant='bordered'
+				>
+					Go Back
+				</Button>
+			</CardFooter>
 		</Card>
 	);
-    
 }
