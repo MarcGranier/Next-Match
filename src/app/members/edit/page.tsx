@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 export default async function MembersEditPage() {
 	const userId = await getAuthUserId();
 
-	const member = getMemberByUserId(userId);
+	const member = await getMemberByUserId(userId);
 
 	if (!member) notFound();
 

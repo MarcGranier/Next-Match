@@ -14,3 +14,5 @@ export const memberEditSchema = z.object({
 		message: 'Country is required',
 	}),
 });
+
+export type MemberEditSchema = z.infer<typeof memberEditSchema>;
