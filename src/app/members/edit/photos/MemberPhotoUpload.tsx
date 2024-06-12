@@ -4,6 +4,7 @@ import { addImage } from '@/app/actions/userActions';
 import ImageUploadButton from '@/components/ImageUploadButton';
 import { CloudinaryUploadWidgetResults } from 'next-cloudinary';
 import { useRouter } from 'next/navigation';
+import React from 'react';
 import { toast } from 'react-toastify';
 
 export default function MemberPhotoUpload() {
@@ -19,7 +20,7 @@ export default function MemberPhotoUpload() {
 	};
 
 	return (
-		<div className='pt-5 pl-5'>
+		<div>
 			<ImageUploadButton onUploadImage={onAddImage} />
 		</div>
 	);
