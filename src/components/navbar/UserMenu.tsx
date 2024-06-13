@@ -1,6 +1,7 @@
 'use client';
 
 import { signOutUser } from '@/app/actions/authActions';
+import { transformImageUrl } from '@/lib/util';
 import {
 	Avatar,
 	Dropdown,
@@ -27,7 +28,7 @@ function UserMenu({ userInfo }: Props) {
 					color='secondary'
 					name={userInfo?.name || 'userInfo avatar'}
 					size='sm'
-					src={userInfo?.image || '/images/userInfo.png'}
+					src={transformImageUrl(userInfo?.image) || '/images/userInfo.png'}
 				/>
 			</DropdownTrigger>
 			<DropdownMenu variant='flat' aria-label='User actions menu'>
