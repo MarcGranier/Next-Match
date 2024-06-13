@@ -13,10 +13,10 @@ import { Session } from 'next-auth';
 import Link from 'next/link';
 
 type Props = {
-	user: Session['user'];
+	userInfo: { name: string | null; image: string | null } | null;
 };
 
-function UserMenu({ user }: Props) {
+function UserMenu({ userInfo }: Props) {
 	return (
 		<Dropdown placement='bottom-end'>
 			<DropdownTrigger>
@@ -25,9 +25,9 @@ function UserMenu({ user }: Props) {
 					as='button'
 					className='transition-transform'
 					color='secondary'
-					name={user?.name || 'user avatar'}
+					name={userInfo?.name || 'userInfo avatar'}
 					size='sm'
-					src={user?.image || '/images/user.png'}
+					src={userInfo?.image || '/images/userInfo.png'}
 				/>
 			</DropdownTrigger>
 			<DropdownMenu variant='flat' aria-label='User actions menu'>
@@ -38,7 +38,7 @@ function UserMenu({ user }: Props) {
 						className='h-14 flex flex-row'
 						aria-label='username'
 					>
-						Signed in as {user?.name}
+						Signed in as {userInfo?.name}
 					</DropdownItem>
 				</DropdownSection>
 				<DropdownItem as={Link} href='/members/edit'>
