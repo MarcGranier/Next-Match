@@ -1,15 +1,19 @@
 import { getAuthUserId } from '@/app/actions/authActions';
-import { getMemberPhotosByUserId } from '@/app/actions/memberAction';
+import {
+	getMemberByUserId,
+	getMemberPhotosByUserId,
+} from '@/app/actions/memberAction';
 import DeleteButton from '@/components/DeleteButton';
-import ImageUploadButton from '../../../../components/ImageUploadButton';
+
 import StarButton from '@/components/StarButton';
 import { CardHeader, Divider, CardBody, Image } from '@nextui-org/react';
 import MemberPhotoUpload from './MemberPhotoUpload';
 import MemberImage from '@/components/MemberImage';
+import ImageUploadButton from '@/components/ImageUploadButton';
 
 export default async function PhotosPage() {
 	const userId = await getAuthUserId();
-
+	const member = await getMemberByUserId(userId);
 	const photos = await getMemberPhotosByUserId(userId);
 
 	return (

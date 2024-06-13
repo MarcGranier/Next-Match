@@ -1,36 +1,28 @@
 'use client';
 
-import { Photo } from '@prisma/client';
-import { CldImage } from 'next-cloudinary';
 import React from 'react';
-import { Image } from '@nextui-org/react';
+import {
+	CldUploadButton,
+	CloudinaryUploadWidgetResults,
+} from 'next-cloudinary';
+import { HiPhoto } from 'react-icons/hi2';
 
 type Props = {
-	photo: Photo | null;
+	onUploadImage: (result: CloudinaryUploadWidgetResults) => void;
 };
 
-export default function MemberImage({ photo }: Props) {
+export default function ImageUploadButton({ onUploadImage }: Props) {
 	return (
-		<div>
-			{photo?.publicId ? (
-				<CldImage
-					alt='Image of member'
-					src={photo.publicId}
-					width={300}
-					height={300}
-					crop='fill'
-					gravity='faces'
-					className='rounded-2xl'
-					priority
-				/>
-			) : (
-				<Image
-					width={220}
-					height={220}
-					src={photo?.url || '/images/user.png'}
-					alt='Image of user'
-				/>
-			)}
-		</div>
+		<CldUploadButton
+			options={{ maxFiles: 1 }}
+			onSuccess={onUploadImage}
+			signatureEndpoint='/api/sign-image'
+			uploadPreset='nm-demo'
+			className='flex items-center gap-2 bg-secondary text-white 
+        rounded-lg py-2 px-4 hover:bg-secondary/70'
+		>
+			<HiPhoto size={28} />
+			Upload new image
+		</CldUploadButton>
 	);
 }
