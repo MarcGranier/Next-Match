@@ -1,6 +1,6 @@
 'use client';
 
-import { setMainImage } from '@/app/actions/userActions';
+import { deleteImage, setMainImage } from '@/app/actions/userActions';
 import { Photo } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -77,12 +77,4 @@ export default function MemberPhotos({ photos, editing, mainImageUrl }: Props) {
 				))}
 		</div>
 	);
-}
-function deleteImage(photo: {
-	id: string;
-	url: string;
-	publicId: string | null;
-	memberId: string;
-}) {
-	throw new Error('Function not implemented.');
 }
