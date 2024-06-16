@@ -40,7 +40,7 @@ export async function getMessageThread(recipientId: string) {
 	try {
 		const userId = await getAuthUserId();
 
-		const messages = await prisma.message.findMany({
+		return prisma.message.findMany({
 			where: {
 				OR: [
 					{
@@ -77,8 +77,6 @@ export async function getMessageThread(recipientId: string) {
 				},
 			},
 		});
-
-		return messages.map((message) => mapMessageToMessageDto(message));
 	} catch (error) {
 		console.log(error);
 		throw error;
