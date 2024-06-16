@@ -3,7 +3,7 @@
 import { ActionResult } from '@/types';
 import { getAuthUserId } from './authActions';
 import { MessageSchema, messageSchema } from '@/lib/schemas/messageSchema';
-import { Message } from 'postcss';
+import { Message } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 
 export async function createMessage(
