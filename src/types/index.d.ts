@@ -29,5 +29,5 @@ type MessageDto = {
 	senderImage?: string | null;
 	recipientId: string;
 	recipientName: string;
-	recipientInage?: string | null;
+	recipientImage?: string | null;
 };
