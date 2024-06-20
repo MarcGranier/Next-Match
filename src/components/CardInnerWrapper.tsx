@@ -1,5 +1,5 @@
 import { CardHeader, Divider, CardBody, CardFooter } from '@nextui-org/react';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 type Props = {
 	header: ReactNode | string;
@@ -12,7 +12,7 @@ export default function CardInnerWrapper({ header, body, footer }: Props) {
 		<>
 			<CardHeader>
 				{typeof header === 'string' ? (
-					<div className='text-2xl font-semibold text-secondary'>{header}</div>
+					<div className='text-2xl font-semibold test-secondary'>{header}</div>
 				) : (
 					<>{header}</>
 				)}
