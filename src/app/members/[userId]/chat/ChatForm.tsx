@@ -1,3 +1,5 @@
+'use client';
+
 import { createMessage } from '@/app/actions/messageActions';
 import { MessageSchema, messageSchema } from '@/lib/schemas/meassgeSchema';
 import { handleFormServerErrors } from '@/lib/util';
