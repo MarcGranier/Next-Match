@@ -24,3 +24,5 @@ const useMessageStore = create<MessageState>()(
 		{ name: 'messageStoreDemo' }
 	)
 );
+
+export default useMessageStore;
