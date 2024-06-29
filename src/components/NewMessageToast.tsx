@@ -32,6 +32,6 @@ export default function NewMessageToast({ message }: Props) {
 	);
 }
 
-export const newMessageToast = (message: MessageDto) => {
-	toast(<NewMessageToast message={message} />);
-};
+// export const newMessageToast = (message: MessageDto) => {
+// 	toast(<NewMessageToast message={message} />);
+// };
