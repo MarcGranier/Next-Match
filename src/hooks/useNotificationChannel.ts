@@ -31,13 +31,12 @@ export const useNotificationChannel = (userId: string | null) => {
 		[add, pathname, searchParams, updateUnreadCount]
 	);
 
-	const handleNewLike = (data: {
-		name: string;
-		image: string | null;
-		userId: string;
-	}) => {
-		newLikeToast(data.name, data.image, data.userId);
-	};
+	const handleNewLike = useCallback(
+		(data: { name: string; image: string | null; userId: string }) => {
+			newLikeToast(data.name, data.image, data.userId);
+		},
+		[]
+	);
 
 	useEffect(() => {
 		if (!userId) return;
