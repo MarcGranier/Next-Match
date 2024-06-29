@@ -6,9 +6,10 @@ import { ucs2 } from 'punycode';
 import { pusherClient } from '@/lib/pusher';
 import { formatShortDateTime } from '@/lib/util';
 import { Channel } from 'pusher-js';
+import useMessageStore from '@/hooks/useMessageStore';
 
 type Props = {
-	initialMessages: MessageDto[];
+	initialMessages: { messages: MessageDto[]; readCount: number };
 	currentUserId: string;
 	chatId: string;
 };
@@ -20,7 +21,17 @@ export default function MessageList({
 }: Props) {
 	const setReadCount = useRef(false);
 	const channelRef = useRef<Channel | null>(null);
-	const [messages, setMessages] = useState(initialMessages);
+	const [messages, setMessages] = useState(initialMessages.messages);
+	const { updateUnreadCount } = useMessageStore((state) => ({
+		updateUnreadCount: state.updateUnreadCount,
+	}));
+
+	useEffect(() => {
+		if (!setReadCount.current) {
+			updateUnreadCount(-initialMessages.readCount);
+			setReadCount.current = true;
+		}
+	}, [initialMessages.readCount, updateUnreadCount]);
 
 	const handleNewMessage = useCallback((message: MessageDto) => {
 		setMessages((prevState) => {

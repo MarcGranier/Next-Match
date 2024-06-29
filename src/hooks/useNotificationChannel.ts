@@ -11,8 +11,9 @@ export const useNotificationChannel = (userId: string | null) => {
 	const channelRef = useRef<Channel | null>(null);
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
-	const { add } = useMessageStore((state) => ({
+	const { add, updateUnreadCount } = useMessageStore((state) => ({
 		add: state.add,
+		updateUnreadCount: state.updateUnreadCount,
 	}));
 
 	const handleNewMessage = useCallback(
@@ -22,11 +23,13 @@ export const useNotificationChannel = (userId: string | null) => {
 				searchParams.get('container') !== 'outbox'
 			) {
 				add(message);
+				updateUnreadCount(1);
 			} else if (pathname !== `/members/${message.senderId}/chat`) {
 				newMessageToast(message);
+				updateUnreadCount(1);
 			}
 		},
-		[add, pathname, searchParams]
+		[add, pathname, searchParams, updateUnreadCount]
 	);
 
 	useEffect(() => {
@@ -38,7 +41,7 @@ export const useNotificationChannel = (userId: string | null) => {
 		}
 
 		return () => {
-			if (channelRef.current) {
+			if (channelRef.current && channelRef.current.subscribed) {
 				channelRef.current.unsubscribe();
 				channelRef.current.unbind('message:new', handleNewMessage);
 				channelRef.current = null;
