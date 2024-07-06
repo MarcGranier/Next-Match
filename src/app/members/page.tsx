@@ -3,9 +3,14 @@ import { getMembers } from '../actions/memberAction';
 import MemberCard from './MemberCard';
 import { fetchCurrentUserLikeIds } from '../actions/likeActions';
 import PaginationComponent from '@/components/PaginationComponent';
+import { UserFilters } from '@/types';
 
-export default async function MembersPage() {
-	const members = await getMembers();
+export default async function MembersPage({
+	searchParams,
+}: {
+	searchParams: UserFilters;
+}) {
+	const members = await getMembers(searchParams);
 	const likeIds = await fetchCurrentUserLikeIds();
 
 	return (
