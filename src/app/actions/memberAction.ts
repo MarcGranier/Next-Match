@@ -5,6 +5,7 @@ import { prisma } from '@/lib/prisma';
 import { UserFilters } from '@/types';
 import { Photo } from '@prisma/client';
 import { addYears } from 'date-fns';
+import { getAuthUserId } from './authActions';
 
 export async function getMembers(searchParams: UserFilters) {
 	const session = await auth();

@@ -38,7 +38,7 @@ export const usePresenceChannel = () => {
 
 			channelRef.current.bind(
 				'pusher:subscription_succeeded',
-				(members: Members) => {
+				async (members: Members) => {
 					handleSetMembers(Object.keys(members.members));
 				}
 			);
