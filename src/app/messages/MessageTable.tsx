@@ -11,7 +11,7 @@ import {
 	TableRow,
 } from '@nextui-org/react';
 import MessageTableCell from './MessageTableCell';
-import { useMessages } from '@/hooks/useMessage';
+import { useMessages } from '@/hooks/useMessages';
 
 type Props = {
 	initialMessages: MessageDto[];
