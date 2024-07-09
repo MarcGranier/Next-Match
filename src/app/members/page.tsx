@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getMembers } from '../actions/memberAction';
+import { getMembers } from '../actions/memberActions';
 import MemberCard from './MemberCard';
 import { fetchCurrentUserLikeIds } from '../actions/likeActions';
 import PaginationComponent from '@/components/PaginationComponent';

@@ -2,7 +2,7 @@ import { getAuthUserId } from '@/app/actions/authActions';
 import {
 	getMemberByUserId,
 	getMemberPhotosByUserId,
-} from '@/app/actions/memberAction';
+} from '@/app/actions/memberActions';
 import DeleteButton from '@/components/DeleteButton';
 
 import StarButton from '@/components/StarButton';

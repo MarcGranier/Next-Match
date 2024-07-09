@@ -1,4 +1,4 @@
-import { getMemberByUserId } from '@/app/actions/memberAction';
+import { getMemberByUserId } from '@/app/actions/memberActions';
 import CardInnerWrapper from '@/components/CardInnerWrapper';
 import { notFound } from 'next/navigation';
 
