@@ -1,5 +1,5 @@
-import { deleteMessage } from '../app/actions/messageActions';
-import { MessageDto } from '../types/';
+import { deleteMessage } from '@/app/actions/messageActions';
+import { MessageDto } from '@/types/';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useState, useCallback, Key, useEffect } from 'react';
