@@ -2,7 +2,6 @@
 
 import { Photo } from '@prisma/client';
 import { CldImage } from 'next-cloudinary';
-import React from 'react';
 import { Image } from '@nextui-org/react';
 
 type Props = {

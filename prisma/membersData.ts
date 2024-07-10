@@ -321,4 +321,18 @@ export const membersData = [
 		country: 'Argentina',
 		image: '/images/m9.jpeg',
 	},
+	{
+		email: 'kessia@test.com',
+		username: 'kessia',
+		gender: 'female',
+		dateOfBirth: '1993-02-01',
+		name: 'Kessia',
+		created: '2020-05-09',
+		lastActive: '2024-04-15',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dignissim suspendisse in est ante in nibh mauris. Fermentum et sollicitudin ac orci phasellus. Proin nibh nisl condimentum id. Luctus venenatis lectus magna fringilla. Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis natoque. Porta lorem mollis aliquam ut porttitor leo a diam. Varius vel pharetra vel turpis nunc eget lorem. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus.\r\n',
+		city: 'Le Havre',
+		country: 'France',
+		image: '/images/f8.jpeg',
+	},
 ];

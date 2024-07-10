@@ -3,7 +3,7 @@
 import { deleteImage, setMainImage } from '@/app/actions/userActions';
 import { Photo } from '@prisma/client';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import DeleteButton from './DeleteButton';
 import MemberImage from './MemberImage';
 import StarButton from './StarButton';

@@ -1,17 +1,7 @@
-'use client';
-
-import {
-	Button,
-	Select,
-	SelectItem,
-	Slider,
-	Selection,
-} from '@nextui-org/react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Button, Select, SelectItem, Slider } from '@nextui-org/react';
 import { useFilters } from '@/hooks/useFilters';
 
 export default function Filters() {
-	const pathname = usePathname();
 	const {
 		genderList,
 		orderByList,
@@ -21,8 +11,6 @@ export default function Filters() {
 		selectOrder,
 		clientLoaded,
 	} = useFilters();
-
-	if (pathname !== '/members') return null;
 
 	return (
 		<div className='shadow-md py-2'>

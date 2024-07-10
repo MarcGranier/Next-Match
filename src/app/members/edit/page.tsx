@@ -1,7 +1,7 @@
+import { getMemberByUserId } from '@/app/actions/memberActions';
 import { CardBody, CardHeader, Divider } from '@nextui-org/react';
 import EditForm from './EditForm';
 import { getAuthUserId } from '@/app/actions/authActions';
-import { getMemberByUserId } from '@/app/actions/memberActions';
 import { notFound } from 'next/navigation';
 
 export default async function MembersEditPage() {

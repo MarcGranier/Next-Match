@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import React from 'react';
 import { Image } from '@nextui-org/react';
 import { transformImageUrl } from '@/lib/util';
 import { MessageDto } from '@/types';

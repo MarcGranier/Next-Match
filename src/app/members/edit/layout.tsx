@@ -1,4 +1,4 @@
-import { getMemberByUserId } from '@/app/actions/memberAction';
+import { getMemberByUserId } from '../../actions/memberActions';
 import { ReactNode } from 'react';
 import MemberSidebar from '../MemberSidebar';
 import { notFound } from 'next/navigation';
