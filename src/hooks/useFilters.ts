@@ -4,6 +4,7 @@ import { useEffect, useState, useTransition } from 'react';
 import { FaMale, FaFemale } from 'react-icons/fa';
 import useFilterStore from './useFilterStore';
 import { Selection } from '@nextui-org/react';
+import usePaginationStore from './usePaginationStore';
 
 export const useFilters = () => {
 	const pathname = usePathname();
@@ -18,6 +19,11 @@ export const useFilters = () => {
 
 	const { filters, setFilters } = useFilterStore();
 
+	const { pageNumber, pageSize } = usePaginationStore((state) => ({
+		pageNumber: state.pagination.pageNumber,
+		pageSize: state.pagination.pageSize,
+	}));
+
 	const { gender, ageRange, orderBy } = filters;
 
 	useEffect(() => {
@@ -27,10 +33,12 @@ export const useFilters = () => {
 			if (gender) searchParams.set('gender', gender.join(','));
 			if (ageRange) searchParams.set('ageRange', ageRange.toString());
 			if (orderBy) searchParams.set('orderBy', orderBy);
+			if (pageSize) searchParams.set('pageSize', pageSize.toString());
+			if (pageNumber) searchParams.set('pageNumber', pageNumber.toString());
 
 			router.replace(`${pathname}?${searchParams}`);
 		});
-	}, [ageRange, orderBy, gender, router, pathname]);
+	}, [ageRange, orderBy, gender, router, pathname, pageNumber, pageSize]);
 
 	const orderByList = [
 		{ label: 'Last active', value: 'updated' },
