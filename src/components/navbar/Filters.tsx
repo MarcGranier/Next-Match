@@ -1,4 +1,4 @@
-import { Button, Select, SelectItem, Slider } from '@nextui-org/react';
+import { Button, Select, SelectItem, Slider, Spinner } from '@nextui-org/react';
 import { useFilters } from '@/hooks/useFilters';
 
 export default function Filters() {
@@ -10,12 +10,19 @@ export default function Filters() {
 		selectGender,
 		selectOrder,
 		clientLoaded,
+		isPending,
 	} = useFilters();
 
 	return (
 		<div className='shadow-md py-2'>
 			<div className='flex flex-row justify-around items-center'>
-				<div className='text-secondary font-semibold text-xl'>Results: 10</div>
+				<div className='flex gap-2 items-center'>
+					<div className='text-secondary font-semibold text-xl'>
+						Results: 10
+					</div>
+					{isPending && <Spinner size='sm' color='secondary' />}
+				</div>
+
 				<div className='flex gap-2 items-center'>
 					<div>Gender:</div>
 					{genderList.map(({ icon: Icon, value }) => (
