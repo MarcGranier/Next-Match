@@ -114,7 +114,7 @@ export async function getMessageThread(recipientId: string) {
 }
 
 export async function getMessagesByContainer(
-	container?: string,
+	container?: string | null,
 	cursor?: string,
 	limit = 2
 ) {
