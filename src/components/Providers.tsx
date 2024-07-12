@@ -35,7 +35,7 @@ export default function Providers({
 			});
 	}, [setUnreadCount]);
 
-	usePresenceChannel();
+	usePresenceChannel(userId);
 	useNotificationChannel(userId);
 	return (
 		<NextUIProvider>
