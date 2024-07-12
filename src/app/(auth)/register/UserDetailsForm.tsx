@@ -7,11 +7,12 @@ export default function UserDetailsForm() {
 	const {
 		register,
 		formState: { errors },
+		getValues,
 	} = useFormContext();
 	return (
 		<div className='space-y-4'>
 			<Input
-				defaultValue=''
+				defaultValue={getValues('name')}
 				label='Name'
 				variant='bordered'
 				{...register('name')}
@@ -19,7 +20,7 @@ export default function UserDetailsForm() {
 				errorMessage={errors.name?.message as string}
 			/>
 			<Input
-				defaultValue=''
+				defaultValue={getValues('email')}
 				label='Email'
 				variant='bordered'
 				{...register('email')}
@@ -27,7 +28,7 @@ export default function UserDetailsForm() {
 				errorMessage={errors.email?.message as string}
 			/>
 			<Input
-				defaultValue=''
+				defaultValue={getValues('password')}
 				label='Password'
 				variant='bordered'
 				type='password'
