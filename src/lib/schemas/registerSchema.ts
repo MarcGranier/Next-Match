@@ -18,16 +18,14 @@ export const profileSchema = z.object({
 	country: z.string().min(1),
 	dateOfBirth: z
 		.string()
-		.min(1, {
-			message: 'Date of birth is required',
-		})
+		.min(1, { message: 'Date of birth is required' })
 		.refine(
 			(dateString) => {
 				const age = calculateAge(new Date(dateString));
 				return age >= 18;
 			},
 			{
-				message: ' You must be at least 18 to use this app',
+				message: 'You must be at least 18 to use this app',
 			}
 		),
 });

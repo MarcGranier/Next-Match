@@ -33,7 +33,7 @@ export default function Providers({
 			getUnreadMessageCount().then((count) => {
 				setUnreadCount(count);
 			});
-	}, [setUnreadCount]);
+	}, [setUnreadCount, userId]);
 
 	usePresenceChannel(userId);
 	useNotificationChannel(userId);

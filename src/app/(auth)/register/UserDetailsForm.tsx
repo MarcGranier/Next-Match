@@ -6,8 +6,8 @@ import { useFormContext } from 'react-hook-form';
 export default function UserDetailsForm() {
 	const {
 		register,
-		formState: { errors },
 		getValues,
+		formState: { errors },
 	} = useFormContext();
 	return (
 		<div className='space-y-4'>

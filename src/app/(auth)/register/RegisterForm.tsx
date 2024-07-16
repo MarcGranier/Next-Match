@@ -1,22 +1,25 @@
 'use client';
+
 import { registerUser } from '@/app/actions/authActions';
 import {
-	profileSchema,
 	RegisterSchema,
+	profileSchema,
 	registerSchema,
 } from '@/lib/schemas/registerSchema';
 import { handleFormServerErrors } from '@/lib/util';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Card, CardHeader, CardBody, Button, Input } from '@nextui-org/react';
+import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { GiPadlock } from 'react-icons/gi';
 import UserDetailsForm from './UserDetailsForm';
-import { useState } from 'react';
 import ProfileForm from './ProfileForm';
+import { useRouter } from 'next/navigation';
 
 const stepSchemas = [registerSchema, profileSchema];
 
 export default function RegisterForm() {
+	const router = useRouter();
 	const [activeStep, setActiveStep] = useState(0);
 	const currentValidationSchema = stepSchemas[activeStep];
 
@@ -33,15 +36,13 @@ export default function RegisterForm() {
 	} = methods;
 
 	const onSubmit = async () => {
-		console.log(getValues);
-		// const result = await registerUser(getValues());
+		const result = await registerUser(getValues());
 
-		// if (result.status === 'success') {
-		//     router.push('/register/success');
-		// } else {
-		//     handleFormServerErrors(result, setError);
-		// }
-		// }
+		if (result.status === 'success') {
+			router.push('/register/success');
+		} else {
+			handleFormServerErrors(result, setError);
+		}
 	};
 
 	const getStepContent = (step: number) => {
@@ -50,9 +51,8 @@ export default function RegisterForm() {
 				return <UserDetailsForm />;
 			case 1:
 				return <ProfileForm />;
-
 			default:
-				return "Unknown step'";
+				return 'Unknown step';
 		}
 	};
 
@@ -70,13 +70,13 @@ export default function RegisterForm() {
 
 	return (
 		<Card className='w-2/5 mx-auto'>
-			<CardHeader className='flex flex-col gap-2 items-center justify-center'>
+			<CardHeader className='flex flex-col items-center justify-center'>
 				<div className='flex flex-col gap-2 items-center text-secondary'>
 					<div className='flex flex-row items-center gap-3'>
 						<GiPadlock size={30} />
 						<h1 className='text-3xl font-semibold'>Register</h1>
 					</div>
-					<p className='text-neutral-500'>Welcome to NextMatch </p>
+					<p className='text-neutral-500'>Welcome to NextMatch</p>
 				</div>
 			</CardHeader>
 			<CardBody>
