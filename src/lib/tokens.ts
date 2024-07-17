@@ -34,3 +34,14 @@ export async function generateToken(email: string, type: TokenType) {
 		},
 	});
 }
+
+export async function getTokenByToken(token: string) {
+	try {
+		return prisma.token.findFirst({
+			where: { token },
+		});
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+}
