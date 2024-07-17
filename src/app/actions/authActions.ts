@@ -1,6 +1,7 @@
 'use server';
 
 import { auth, signIn, signOut } from '@/auth';
+import { sendVerificationEmail } from '@/lib/mail';
 import { prisma } from '@/lib/prisma';
 import { LoginSchema } from '@/lib/schemas/loginSchema';
 import {
@@ -29,7 +30,7 @@ export async function signInUser(
 				TokenType.VERIFICATION
 			);
 
-			//Send User email
+			await sendVerificationEmail(token.email, token.token);
 
 			return {
 				status: 'error',
@@ -115,6 +116,11 @@ export async function registerUser(
 		const verificationToken = await generateToken(
 			email,
 			TokenType.VERIFICATION
+		);
+
+		await sendVerificationEmail(
+			verificationToken.email,
+			verificationToken.token
 		);
 
 		return { status: 'success', data: user };
