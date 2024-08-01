@@ -16,7 +16,6 @@ type Props = {
 	subHeaderText?: string;
 	action?: () => void;
 	actionLabel?: string;
-	footer?: ReactNode;
 };
 
 export default function CardWrapper({
@@ -26,7 +25,6 @@ export default function CardWrapper({
 	subHeaderText,
 	action,
 	actionLabel,
-	footer,
 }: Props) {
 	return (
 		<div className='flex items-center justify-center vertical-center'>
@@ -54,7 +52,6 @@ export default function CardWrapper({
 							{actionLabel}
 						</Button>
 					)}
-					{footer && <>{footer}</>}
 				</CardFooter>
 			</Card>
 		</div>

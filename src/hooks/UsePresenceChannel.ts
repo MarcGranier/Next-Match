@@ -4,7 +4,10 @@ import { Channel, Members } from 'pusher-js';
 import { pusherClient } from '@/lib/pusher';
 import { updateLastActive } from '@/app/actions/memberActions';
 
-export const usePresenceChannel = (userId: string | null) => {
+export const usePresenceChannel = (
+	userId: string | null,
+	profileComplete: boolean
+) => {
 	const { set, add, remove } = usePresenceStore((state) => ({
 		set: state.set,
 		add: state.add,
