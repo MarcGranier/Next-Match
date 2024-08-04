@@ -26,7 +26,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
 		subject: 'Reset your password',
 		html: `
             <h1>You have requested to reset your password</h1>
-            <p>Click the link below to reset password</p>
+            <p>Click the link below to reset your password</p>
             <a href="${link}">Reset password</a>
         `,
 	});
