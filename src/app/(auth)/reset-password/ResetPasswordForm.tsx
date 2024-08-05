@@ -6,17 +6,18 @@ import {
 } from '@/app/actions/authActions';
 import CardWrapper from '@/components/CardWrapper';
 import ResultMessage from '@/components/ResultMessage';
+import { ActionResult } from '@/types';
+import { Button, Input } from '@nextui-org/react';
+import { useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+import { GiPadlock } from 'react-icons/gi';
+import ForgotPasswordForm from '../forgot-password/ForgotPasswordForm';
 import {
 	ResetPasswordSchema,
 	resetPasswordSchema,
 } from '@/lib/schemas/forgotPasswordSchema';
-import { ActionResult } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Input } from '@nextui-org/react';
 import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import { GiPadlock } from 'react-icons/gi';
 
 export default function ResetPasswordForm() {
 	const searchParams = useSearchParams();
@@ -70,7 +71,7 @@ export default function ResetPasswordForm() {
 						isLoading={isSubmitting}
 						isDisabled={!isValid}
 					>
-						Reset password
+						Reset Password
 					</Button>
 				</form>
 			}
