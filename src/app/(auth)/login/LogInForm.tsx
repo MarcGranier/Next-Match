@@ -8,6 +8,7 @@ import { signInUser } from '@/app/actions/authActions';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
+import SocialLogin from './SocialLogin';
 
 export default function LogInForm() {
 	const router = useRouter();
@@ -70,6 +71,7 @@ export default function LogInForm() {
 						>
 							Login
 						</Button>
+						<SocialLogin />
 						<div className='flex justify-center hover:underline text-sm'>
 							<Link href='/forgot-password'>Forgot Password?</Link>
 						</div>
