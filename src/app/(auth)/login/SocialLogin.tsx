@@ -1,7 +1,7 @@
+import { signIn } from 'next-auth/react';
 import { Button } from '@nextui-org/react';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { signIn } from 'next-auth/react';
 
 export default function SocialLogin() {
 	const onClick = (provider: 'google' | 'github') => {
