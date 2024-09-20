@@ -42,7 +42,7 @@ export const useNotificationChannel = (
 	);
 
 	useEffect(() => {
-		if (!userId) return;
+		if (!userId || !profileComplete) return;
 		if (!channelRef.current) {
 			channelRef.current = pusherClient.subscribe(`private-${userId}`);
 
@@ -58,5 +58,5 @@ export const useNotificationChannel = (
 				channelRef.current = null;
 			}
 		};
-	}, [userId, handleNewMessage, handleNewLike]);
+	}, [userId, handleNewMessage, handleNewLike, profileComplete]);
 };

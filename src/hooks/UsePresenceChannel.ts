@@ -37,7 +37,7 @@ export const usePresenceChannel = (
 	);
 
 	useEffect(() => {
-		if (!userId) return;
+		if (!userId || !profileComplete) return;
 		if (!channelRef.current) {
 			channelRef.current = pusherClient.subscribe('presence-nm');
 
@@ -75,5 +75,11 @@ export const usePresenceChannel = (
 				channelRef.current.unbind('pusher:member_removed', handleRemoveMember);
 			}
 		};
-	}, [handleAddMember, handleRemoveMember, handleSetMembers, userId]);
+	}, [
+		handleAddMember,
+		handleRemoveMember,
+		handleSetMembers,
+		userId,
+		profileComplete,
+	]);
 };
