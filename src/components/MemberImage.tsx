@@ -6,14 +6,37 @@ import { Button, Image } from '@nextui-org/react';
 import clsx from 'clsx';
 import { useRole } from '@/hooks/useRole';
 import { ImCheckmark, ImCross } from 'react-icons/im';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 import { approvePhoto, rejectPhoto } from '@/app/actions/adminActions';
-
 type Props = {
 	photo: Photo | null;
 };
 
 export default function MemberImage({ photo }: Props) {
 	const role = useRole();
+	const router = useRouter();
+
+	if (!photo) return null;
+
+	const approve = async (photoId: string) => {
+		try {
+			await approvePhoto(photoId);
+			router.refresh();
+		} catch (error: any) {
+			toast.error(error.message);
+		}
+	};
+
+	const reject = async (photo: Photo) => {
+		try {
+			await rejectPhoto(photo);
+			router.refresh();
+		} catch (error: any) {
+			toast.error(error.message);
+		}
+	};
+
 	return (
 		<div>
 			{photo?.publicId ? (

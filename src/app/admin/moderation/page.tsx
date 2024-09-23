@@ -1,4 +1,4 @@
-import { getUnapprovedPhotos } from '@/app/actions/adminActiions';
+import { getUnapprovedPhotos } from '@/app/actions/adminActions';
 import MemberPhotos from '@/components/MemberPhotos';
 import { Divider } from '@nextui-org/react';
 

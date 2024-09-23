@@ -2,8 +2,8 @@
 
 import { prisma } from '@/lib/prisma';
 import { getUserRole } from './authActions';
-import { cloudinary } from '@/lib/cloudinary';
 import { Photo } from '@prisma/client';
+import { cloudinary } from '@/lib/cloudinary';
 
 export async function getUnapprovedPhotos() {
 	try {
@@ -22,7 +22,7 @@ export async function getUnapprovedPhotos() {
 	}
 }
 
-export async function aprovePhoto(photoId: string) {
+export async function approvePhoto(photoId: string) {
 	try {
 		const role = await getUserRole();
 
@@ -33,7 +33,7 @@ export async function aprovePhoto(photoId: string) {
 			include: { member: { include: { user: true } } },
 		});
 
-		if (!photo || !photo.member || photo.member.user)
+		if (!photo || !photo.member || !photo.member.user)
 			throw new Error('Cannot approve this image');
 
 		const { member } = photo;
