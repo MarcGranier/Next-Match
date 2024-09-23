@@ -2,14 +2,18 @@
 
 import { Photo } from '@prisma/client';
 import { CldImage } from 'next-cloudinary';
-import { Image } from '@nextui-org/react';
+import { Button, Image } from '@nextui-org/react';
 import clsx from 'clsx';
+import { useRole } from '@/hooks/useRole';
+import { ImCheckmark, ImCross } from 'react-icons/im';
+import { approvePhoto, rejectPhoto } from '@/app/actions/adminActions';
 
 type Props = {
 	photo: Photo | null;
 };
 
 export default function MemberImage({ photo }: Props) {
+	const role = useRole();
 	return (
 		<div>
 			{photo?.publicId ? (
@@ -21,7 +25,7 @@ export default function MemberImage({ photo }: Props) {
 					crop='fill'
 					gravity='faces'
 					className={clsx('rounded-2xl', {
-						'opacity-40': !photo.isApproved,
+						'opacity-40': !photo.isApproved && role !== 'ADMIN',
 					})}
 					priority
 				/>
@@ -33,11 +37,31 @@ export default function MemberImage({ photo }: Props) {
 					alt='Image of user'
 				/>
 			)}
-			{!photo?.isApproved && (
+			{!photo?.isApproved && role !== 'ADMIN' && (
 				<div className='absolute bottom-2 w-full bg-slate-200 p-1'>
 					<div className='flex justify-center text-danger font-semibold'>
-						Awaiting Approval
+						Awaiting approval
 					</div>
+				</div>
+			)}
+			{role === 'ADMIN' && (
+				<div className='flex flex-row gap-2 mt-2'>
+					<Button
+						onClick={() => approve(photo.id)}
+						color='success'
+						variant='bordered'
+						fullWidth
+					>
+						<ImCheckmark size={20} />
+					</Button>
+					<Button
+						onClick={() => reject(photo)}
+						color='danger'
+						variant='bordered'
+						fullWidth
+					>
+						<ImCross size={20} />
+					</Button>
 				</div>
 			)}
 		</div>
