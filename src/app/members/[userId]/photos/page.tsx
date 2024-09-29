@@ -1,30 +1,24 @@
 import { getMemberPhotosByUserId } from '@/app/actions/memberActions';
 import MemberImage from '@/components/MemberImage';
-import { CardBody, CardHeader, Divider, Image } from '@nextui-org/react';
+import { CardBody, CardHeader, Divider } from '@nextui-org/react';
+import MemberPhotos from '@/components/MemberPhotos';
 
 export default async function PhotosPage({
-	params,
+    params,
 }: {
-	params: { userId: string };
+    params: { userId: string };
 }) {
-	const photos = await getMemberPhotosByUserId(params.userId);
+    const photos = await getMemberPhotosByUserId(params.userId);
 
-	return (
-		<>
-			<CardHeader className='text-2xl font-semibold test-secondary'>
-				Photos
-			</CardHeader>
-			<Divider />
-			<CardBody>
-				<div className='grid grid-cols-5 gap-3 p-5'>
-					{photos &&
-						photos.map((photo) => (
-							<div key={photo.id} className='relative'>
-								<MemberImage photo={photo} />
-							</div>
-						))}
-				</div>
-			</CardBody>
-		</>
-	);
+    return (
+        <>
+            <CardHeader className="text-2xl font-semibold test-secondary">
+                Photos
+            </CardHeader>
+            <Divider />
+            <CardBody>
+                <MemberPhotos photos={photos} />
+            </CardBody>
+        </>
+    );
 }
