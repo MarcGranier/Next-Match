@@ -50,21 +50,21 @@ async function seedAdmin() {
     });
 }
 
-// async function main() {
-//     if (
-//         process.env.RUN_SEED === 'true' ||
-//         process.env.NODE_ENV === 'development'
-//     ) {
-//         await seedMembers();
-//         await seedAdmin();
-//     }
-// }
+async function main() {
+    if (
+        process.env.RUN_SEED === 'true' ||
+        process.env.NODE_ENV === 'development'
+    ) {
+        await seedMembers();
+        await seedAdmin();
+    }
+}
 
-// main()
-//     .catch((e) => {
-//         console.error(e);
-//         process.exit(1);
-//     })
-//     .finally(async () => {
-//         await prisma.$disconnect();
-//     });
+main()
+    .catch((e) => {
+        console.error(e);
+        process.exit(1);
+    })
+    .finally(async () => {
+        await prisma.$disconnect();
+    });
